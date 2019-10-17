@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class ExamplesController < OpenReadController
+class ExamplesController < ProtectedController
   before_action :set_example, only: %i[update destroy]
 
   # GET /examples
   # GET /examples.json
   def index
     @examples = Example.all
+    # @examples = current_user.examples
 
     render json: @examples
   end
