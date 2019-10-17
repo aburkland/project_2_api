@@ -1,4 +1,5 @@
 #!/bin/bash
+#       "user_id": "'"${ID}"'"
 
 curl "http://localhost:4741/memories" \
   --include \
@@ -9,8 +10,7 @@ curl "http://localhost:4741/memories" \
     "memory": {
       "title": "'"${TITLE}"'",
       "date": "'"${DATE}"'",
-      "description": "'"${DESC}"'",
-      "user_id": "'"${ID}"'"
+      "description": "'"${DESC}"'"
     }
   }'
 

@@ -6,7 +6,7 @@ class MemoriesController < ProtectedController
   # GET /memories
   def index
     # @memories = Memory.all
-    @memories = current.user.memories
+    @memories = current_user.memories
 
     render json: @memories
   end
@@ -19,7 +19,7 @@ class MemoriesController < ProtectedController
   # POST /memories
   def create
     # @memory = Memory.new(memory_params)
-    @example = current_user.memories.build(memory_params)
+    @memory = current_user.memories.build(memory_params)
 
     if @memory.save
       render json: @memory, status: :created, location: @memory
@@ -46,11 +46,11 @@ class MemoriesController < ProtectedController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_memory
-    @memory = Memory.find(params[:id])
+    @memory = current_user.memories.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def memory_params
-    params.require(:memory).permit(:title, :date, :description) # do i need :user_id here?
+    params.require(:memory).permit(:title, :date, :description)
   end
 end
